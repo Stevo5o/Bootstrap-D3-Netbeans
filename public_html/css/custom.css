@@ -1,7 +1,10 @@
+#chart2{
+  padding: 0 80px;
+}
 .chart
 {   
    background-color: #F5F2EB;
-   border: 1px solid #CCC; 
+   border: 1px solid #CCC;
  }
 
 .bar 

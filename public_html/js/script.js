@@ -137,34 +137,34 @@ d3.tsv('data.tsv', function(error, data) {
 
 // piechart
 var width = 400,
-        height = 400;
+        height = 400;        
 radius = 200,
         colors = d3.scale.ordinal()
         .range(['#595AB7','#A57706','#D11C24','#C61C6F','#BD3613','#2176C7','#259286','#738A05']);
 
 var piedata = [
    {
-      label: "Stringer",
+      label: "Bitter",
+      value: 30
+   },
+   {
+      label: "Red Ale",
+      value: 40
+   },
+   {
+      label: "Stout",
+      value: 60
+   },
+   {
+      label: "Lager",
+      value: 200
+   },
+   {
+      label: "Pilsener",
       value: 50
    },
    {
-      label: "Bodie",
-      value: 50
-   },
-   {
-      label: "Jimmy",
-      value: 50
-   },
-   {
-      label: "Omar",
-      value: 50
-   },
-   {
-      label: "Bunk",
-      value: 50
-   },
-   {
-      label: "Snoop",
+      label: "Gloden ale",
       value: 50
    }
 ];
@@ -181,6 +181,7 @@ var arc = d3.svg.arc()
 var myChart2 = d3.select( '#chart2' ).append( 'svg' )
                 .attr( 'width', '400' )
         .attr( 'height', '400' )
+        .attr("text-anchor", "middle") 
     .attr('viewBox','0 0 '+Math.min(width,height)+' '+Math.min(width,height))
     .attr('preserveAspectRatio','xMinYMin')
         .append( 'g' )
@@ -216,51 +217,51 @@ var text = d3.selectAll('g.slice')
    var data =
            [
               {
-                 key: 'Glazed',
+                 key: 'Bitter',
                  value: 132
               },
               {
-                 key: 'Jelly',
+                 key: 'Ale',
                  value: 71
               },
               {
-                 key: 'Holes',
+                 key: 'Stout',
                  value: 337
               },
               {
-                 key: 'Sprinkles',
+                 key: 'Lager',
                  value: 93
               },
               {
-                 key: 'Crumb',
+                 key: 'Bock',
                  value: 78
               },
               {
-                 key: 'Chocolate',
+                 key: 'Dunkel',
                  value: 43
               },
               {
-                 key: 'Coconut',
+                 key: 'Pilsener',
                  value: 20
               },
               {
-                 key: 'Cream',
+                 key: 'Weissbier',
                  value: 16
               },
               {
-                 key: 'Cruller',
+                 key: 'Pale ale',
                  value: 30
               },
               {
-                 key: 'Éclair',
+                 key: 'Red ale',
                  value: 8
               },
               {
-                 key: 'Fritter',
+                 key: 'Gloden ale',
                  value: 17
               },
               {
-                 key: 'Bearclaw',
+                 key: 'Brown ale',
                  value: 21
               }
            ];
@@ -457,7 +458,7 @@ var text = d3.selectAll('g.slice')
                   .attr('y', 0)
                   .style('text-anchor', 'middle')
                   .attr('transform', 'translate(' + width/2 + ', 80)')
-                  .text('Donut Type'); 
+                  .text('Beer Type'); 
       } else if(params.initialize === false)
       {
           // update info
@@ -895,14 +896,14 @@ var margin = {
            } ) )
       drawAxis.call( this, params );
       var self = this;
-      var donuts = d3.keys( params.data[0] ).filter( function ( d )
+      var beers = d3.keys( params.data[0] ).filter( function ( d )
       {
          return d !== "age" && d !== "responses";
       } );
 
       // enter() for the groups
       this.selectAll( ".donut" )
-              .data( donuts )
+              .data( beers )
               .enter()
               .append( "g" )
               .attr( "class", function ( d )
@@ -930,14 +931,14 @@ var margin = {
         .style("opacity", 0.1)
       });
 
-      donuts.forEach( function ( donut )
+      beers.forEach( function ( Beer )
       {
-         var g = self.selectAll( "g." + donut );
+         var g = self.selectAll( "g." + Beer );
          var arr = params.data.map( function ( d )
          {
             return{
-               key: donut,
-               value: d[donut],
+               key: Beer,
+               value: d[Beer],
                age: d.age,
                responses: d.responses
             };
@@ -965,7 +966,7 @@ var margin = {
                  } )
                 .on("mouseover", function(d,i)
                 {
-                   var str = d.key + " Donut: ";
+                   var str = d.key + " Beer: ";
                    str += "Age: " + d.age + " ";
                    str += "Responses: " + d.responses + " ";
                    str += "Average Rating: " + d.value;
