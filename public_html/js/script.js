@@ -366,8 +366,8 @@ var text = d3.selectAll('g.slice')
       data: data
    } );
 
-  // vertical
- 
+  // 4 vertical
+
    var margin = {
       top: 58,
       bottom: 100,
@@ -626,7 +626,7 @@ plot.call( chart, {
           initialize: true
    } );
 
-// line chart 
+// 5 line chart 
 
 var data = [
   {key: "Lager", value: 60, date: "2014/01/01" },
